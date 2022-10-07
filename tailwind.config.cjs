@@ -22,6 +22,7 @@ module.exports = {
         success: "rgb(var(--success) / <alpha-value>)",
         info: "rgb(var(--info) / <alpha-value>)",
         warning: "rgb(var(--warning) / <alpha-value>)",
+        bluetrans: "rgba(37, 99, 235, 10)",
         primary: {
           100: "rgb(var(--primary-100) / <alpha-value>)",
           200: "rgb(var(--primary-200) / <alpha-value>)",

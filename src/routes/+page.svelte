@@ -1,31 +1,22 @@
-<h1>Base Svelte with tailwind project</h1>
-<button class="p-2 bg-primary-500 rounded-md text-white font-bold">
+<script>
+  import { onMount } from "svelte";
+  let dark = false;
+  onMount(() => {
+    dark = document.body.classList.contains("dark");
+  });
+  import Button from "$lib/components/Button.svelte";
+</script>
+
+<Button
+  on:click={() => {
+    dark = !dark;
+    if (!dark) document.body.classList.remove("dark");
+    else document.body.classList.add("dark");
+  }}
+>
   Primary
-</button>
-<button class="p-2 bg-secondary-500 rounded-md text-white font-bold">
-  Secondary
-</button>
-<button class="p-2 bg-info rounded-md  text-white font-bold"> Info </button>
-<button class="p-2 bg-error rounded-md  text-white font-bold"> Error </button>
-<button class="p-2 bg-success rounded-md  text-white font-bold">
-  Success
-</button>
-<button class="p-2 bg-warning rounded-md  text-white font-bold">
-  Warning
-</button>
-<br />
-<br />
-<button
-  class="p-2 bg-primary-500 rounded-md text-white font-bold"
-  on:click={() => {
-    document.body.classList.remove("emerald");
-    document.body.classList.add("corporate");
-  }}>Corporate</button
->
-<button
-  class="p-2 bg-primary-500 rounded-md text-white font-bold"
-  on:click={() => {
-    document.body.classList.remove("corporate");
-    document.body.classList.add("emerald");
-  }}>Emerald</button
->
+</Button>
+
+<Button white>Test white</Button>
+
+<Button secondary>Test secondary</Button>
