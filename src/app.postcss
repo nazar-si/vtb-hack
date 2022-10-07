@@ -1,0 +1,90 @@
+/* MINIMAL FONT FAMILY :*/
+/* @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-gradient {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+*::selection {
+  @apply bg-zinc-500/25 text-zinc-900 dark:bg-zinc-200/25 dark:text-zinc-50;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-750;
+}
+*::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md;
+}
+
+body {
+  @apply bg-gray-50;
+}
+body.dark {
+  @apply bg-gray-850;
+}
+
+body,
+body.corporate {
+  --primary-100: 216 230 253;
+  --primary-200: 177 205 251;
+  --primary-300: 137 180 250;
+  --primary-400: 98 155 248;
+  --primary-500: 59 130 246;
+  --primary-600: 47 104 197;
+  --primary-700: 35 78 148;
+  --primary-800: 24 52 98;
+  --primary-900: 12 26 49;
+  --secondary-100: 207 241 230;
+  --secondary-200: 159 227 205;
+  --secondary-300: 112 213 179;
+  --secondary-400: 64 199 154;
+  --secondary-500: 16 185 129;
+  --secondary-600: 13 148 103;
+  --secondary-700: 10 111 77;
+  --secondary-800: 6 74 52;
+  --secondary-900: 3 37 26;
+  --error: 239 68 68;
+  --success: 20 184 166;
+  --info: 59 130 246;
+  --warning: 245 158 11;
+  --radius-md: 0.2rem;
+  --radius-sm: 0.1rem;
+  --radius-lg: 0.4rem;
+}
+body.emerald {
+  --secondary-100: 211 234 252;
+  --secondary-200: 167 212 249;
+  --secondary-300: 124 191 245;
+  --secondary-400: 80 169 242;
+  --secondary-500: 36 148 239;
+  --secondary-600: 29 118 191;
+  --secondary-700: 22 89 143;
+  --secondary-800: 14 59 96;
+  --secondary-900: 7 30 48;
+  --primary-100: 207 241 230;
+  --primary-200: 159 227 205;
+  --primary-300: 112 213 179;
+  --primary-400: 64 199 154;
+  --primary-500: 16 185 129;
+  --primary-600: 13 148 103;
+  --primary-700: 10 111 77;
+  --primary-800: 6 74 52;
+  --primary-900: 3 37 26;
+  --error: 239 68 68;
+  --success: 20 184 166;
+  --info: 59 130 246;
+  --warning: 245 158 11;
+  --radius-md: 0.4rem;
+  --radius-sm: 0.2rem;
+  --radius-lg: 1rem;
+}
