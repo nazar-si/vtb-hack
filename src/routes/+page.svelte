@@ -1,62 +1,136 @@
 <script lang="ts">
   import BreadCrumb from "$lib/components/BreadCrumb.svelte";
-  import Grid from "$lib/components/Grid.svelte";
-  import Card from "$lib/components/Card.svelte";
-  import Object from "$lib/components/Object.svelte";
+  import Grid from "$lib/components/ui/Grid.svelte";
+  import TruthDare from "$lib/components/Blocks/TruthDare.svelte";
+  import Chats from "$lib/components/Blocks/Chats.svelte";
+  import Articles from "$lib/components/Blocks/Articles.svelte";
+  import Forums from "$lib/components/Blocks/Forums.svelte";
+  import Courses from "$lib/components/Blocks/Courses.svelte";
+  import Mentoring from "$lib/components/Blocks/Mentoring.svelte";
 </script>
 
-<BreadCrumb
-  items={[
-    { title: "Активности", href: "/" },
-    { title: "Вкладка", href: "/" },
-  ]}
-/>
+<BreadCrumb items={[{ title: "Активности", href: "/" }]} />
 
 <Grid>
-  <Card
-    full="Показать все"
-    title="Чаты"
-    description="За ответы и общение в чате мы зачисляем коины!"
-  >
-    <Object
-      m={3}
-      url="/icons/galaxy.ico"
-      name="Main"
-      status="3141 участник"
-      num={182}
+  <svelte:fragment slot="column-1">
+    <Chats
+      data={[
+        {
+          url: "/icons/galaxy.ico",
+          name: "Main",
+          count: 3141,
+          number: 182,
+        },
+        {
+          url: "/icons/prisma.ico",
+          name: "Кибер-клан",
+          count: 23,
+          number: 4,
+        },
+        {
+          url: "/icons/midnight.ico",
+          name: "Мемы",
+          count: 120,
+          number: 13,
+        },
+        {
+          url: "/icons/brackets.ico",
+          name: "IT-клуб",
+          count: 12,
+          number: 2,
+        },
+      ]}
     />
-    <Object
-      m={3}
-      url="/icons/prisma.ico"
-      name="Кибер-клан"
-      status="23 участника"
-      num={4}
+    <Articles
+      data={[
+        {
+          description:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facilis quaerat adipisci. Dicta, magni recusandae, porro tenetur explicabo architecto, provident esse autem molestiae cum laudantium minus consequatur sunt culpa similique.",
+          updatedAt: new Date("2022-10-4"),
+          author: 0,
+          title: "Как чинить куллер",
+          readTime: 5,
+        },
+        {
+          description:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facilis quaerat adipisci. Dicta, magni recusandae, porro tenetur explicabo architecto, provident esse autem molestiae cum laudantium minus consequatur sunt culpa similique.",
+          updatedAt: new Date("2022-10-4"),
+          author: 0,
+          title: "Гайд по гринду коинов",
+          readTime: 5,
+        },
+      ]}
     />
-    <Object
-      m={3}
-      url="/icons/midnight.ico"
-      name="Мемы"
-      status="120 участников"
-      num={13}
+    <Mentoring
+      data={{
+        isMentor: true,
+        menti: [
+          {
+            name: "Симчук Назар",
+            status: "неДизайнер",
+            coins: "2k",
+            url: "/icons/nazar.jpg",
+          },
+          {
+            name: "Познающий мир",
+            status: "Филиал ада",
+            coins: "1.6k",
+            url: "/icons/katze.jpg",
+          },
+          {
+            name: "Какой-то чел",
+            status: "неДизайнер",
+            coins: "1.3k",
+            url: "/icons/linus.jpg",
+          },
+        ],
+      }}
     />
-    <Object
-      m={3}
-      url="/icons/brackets.ico"
-      name="IT-клуб"
-      status="12 участников"
-      num={2}
+  </svelte:fragment>
+  <svelte:fragment slot="column-2">
+    <TruthDare
+      data={{
+        truth: "Я втуалете, что делать?",
+        dare: "Поменять воду в куллере",
+        truthPrice: 23,
+        darePrice: 23,
+        truthTill: new Date("2022-10-9 8:00"),
+        dareTill: new Date("2022-10-9 8:00"),
+        answersCount: 12,
+        answer: true,
+      }}
     />
-    <button class="other">Загрузить больше</button>
-  </Card>
+    <Forums
+      data={[
+        {
+          title: "Как менять воду в куллере?",
+          count: 12,
+          id: 0,
+        },
+        {
+          title: "Как опоздать на 4 часа и не спалиться?",
+          count: 23,
+          id: 0,
+        },
+      ]}
+    />
+    <Courses
+      data={[
+        {
+          title: "Профессиональная починка куллера",
+          left: 5,
+          price: 25,
+          url: "/couler.jpg",
+          started: false,
+        },
+        {
+          title: "Работа на платформе YourEDU",
+          left: 3,
+          price: 30,
+          url: "/icons/sum.jpg",
+          started: true,
+        },
+      ]}
+    />
+  </svelte:fragment>
 </Grid>
-
-<style lang="postcss">
-  .other {
-    margin: 0;
-    width: 100%;
-    height: 4rem;
-    border-radius: 6px;
-    @apply text-gray-500 gdark:text-gray-600;
-    @apply border-1 border-gray-300 gdark:border-gray-700;
-  }
-</style>

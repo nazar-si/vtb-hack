@@ -1,8 +1,10 @@
 <script lang="ts">
+  import Badge from "./Badge.svelte";
+
   export let name = "Название";
   export let status = "Статус";
   export let url = "/favicon.png";
-  export let num = 0;
+  export let num = "";
   export let m = 0;
 </script>
 
@@ -16,14 +18,13 @@
       <div class="status">{status}</div>
     </div>
   </div>
-  <div class="number">
-    {num}
-  </div>
+  <Badge>{num}</Badge>
 </button>
 
 <style lang="postcss">
   .wrapper {
     @apply border-1 border-gray-300 gdark:border-gray-700;
+    @apply hover:border-blue-500 transition-all;
     padding: 0.5rem;
     padding-right: 1rem;
     width: 100%;
@@ -68,13 +69,6 @@
           @apply text-sm text-gray-500 gdark:text-gray-400;
         }
       }
-    }
-    .number {
-      min-width: 28px;
-      padding: 2px 4px;
-      border-radius: 6px;
-      @apply text-blue-600 font-medium border-1 border-blue-500;
-      @apply bg-[#08f3] gdark:text-white;
     }
   }
 </style>

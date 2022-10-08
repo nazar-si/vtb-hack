@@ -1,13 +1,13 @@
 <script lang="ts">
   import { Sun, Moon } from "tabler-icons-svelte";
-  import User from "../Object.svelte";
+  import User from "../ui/Object.svelte";
   import Nav from "./Nav.svelte";
   import { onMount } from "svelte";
   let dark = false;
   onMount(() => {
     dark = document.body.classList.contains("dark");
   });
-  import Button from "$lib/components/Button.svelte";
+  import Button from "$lib/components/ui/Button.svelte";
 </script>
 
 <div class="wrapper">
@@ -32,7 +32,12 @@
       {/if}
     </Button>
   </header>
-  <User url="/icons/katze.jpg" name="Niedlich Katze" status="Филиал ада" />
+  <User
+    url="/icons/chad.jpg"
+    name="Niedlich Katze"
+    status="Филиал ада"
+    num="1.2k V₽"
+  />
   <Nav />
 </div>
 

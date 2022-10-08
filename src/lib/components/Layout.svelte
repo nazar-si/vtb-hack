@@ -13,9 +13,12 @@
     flex-direction: row;
     align-items: stretch;
     height: 100vh;
+    overflow: hidden;
     main {
       flex: 1;
-      margin: 1rem;
+      padding: 2rem;
+      height: 100vh;
+      overflow-y: scroll;
     }
   }
 </style>

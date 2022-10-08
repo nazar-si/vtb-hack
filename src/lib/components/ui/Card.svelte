@@ -30,6 +30,7 @@
   .wrapper {
     padding: 1.5rem;
     border-radius: 10px;
+    height: fit-content;
     @apply bg-white border-1 border-gray-200;
     @apply gdark:bg-gray-750 gdark:border-gray-700;
     header {
