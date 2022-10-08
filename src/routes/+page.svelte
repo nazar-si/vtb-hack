@@ -63,7 +63,7 @@
     />
     <Mentoring
       data={{
-        isMentor: true,
+        isMentor: false,
         menti: [
           {
             name: "Симчук Назар",

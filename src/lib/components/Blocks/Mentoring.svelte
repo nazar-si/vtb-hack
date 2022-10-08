@@ -23,7 +23,11 @@
 >
   <div class="list">
     {#if !data.isMentor}
-      <Button>Стать ментором</Button>
+      <Button
+        on:click={() => {
+          data.isMentor = true;
+        }}>Стать ментором</Button
+      >
     {:else}
       {#each data.menti as m, id}
         <Object
