@@ -23,6 +23,7 @@
       name={item.name}
       url={item.url}
       num={item.number.toString()}
+      bell
       status="{item.count} {declOfNum(item.count, [
         'участник',
         'участника',

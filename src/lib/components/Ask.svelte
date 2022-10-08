@@ -4,18 +4,21 @@
   import Badge from "./ui/Badge.svelte";
   import { ChevronRight } from "tabler-icons-svelte";
   import Frame from "./ui/Frame.svelte";
-
+  const formatter = new Intl.NumberFormat("en", { notation: "compact" });
   export let title = "";
   export let points = 0;
   export let value = "";
   export let placeholder = "";
+  export let matics = false;
 </script>
 
 <Frame
   ><div class="own">
     <div class="row">
       <div class="title">{title}</div>
-      {#if points}<Badge>{points} V₽</Badge>{/if}
+      {#if points}<Badge mc={matics} vr={!matics}
+          >{formatter.format(points)}</Badge
+        >{/if}
     </div>
     <div class="row">
       <Input {placeholder} bind:value />

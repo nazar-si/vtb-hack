@@ -7,7 +7,8 @@
   export let value = [0];
   export let disabled = false;
   export let type = "text";
-  //   let value = [0];
+  export let small = false;
+  // let value = [0];
 </script>
 
 <div class="entry">
@@ -17,7 +18,9 @@
       <button
         {disabled}
         class="option"
+        class:sole={component.length == 1}
         class:selected={value.includes(i)}
+        style:height="{small ? 32 : 44}px"
         on:click={() => {
           if (!check) {
             value = [i];
@@ -32,7 +35,7 @@
         }}
       >
         {#if type == "icon"}
-          <svelte:component this={component} strokeWidth={1.5} />
+          <svelte:component this={component} strokeWidth={1.5} size={16} />
         {:else}
           <div>{component}</div>
         {/if}
@@ -78,6 +81,9 @@
         }
         &:last-of-type {
           border-radius: 0 6px 6px 0;
+        }
+        &.sole {
+          border-radius: 6px;
         }
       }
       &.out {

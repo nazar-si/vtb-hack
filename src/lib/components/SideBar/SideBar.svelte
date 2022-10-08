@@ -2,6 +2,15 @@
   import { Sun, Moon } from "tabler-icons-svelte";
   import User from "../ui/Object.svelte";
   import Nav from "./Nav.svelte";
+  import { userData, walletData } from "$lib/stores/user";
+  import type { userDataType } from "$lib/stores/user";
+  let data: userDataType;
+  let walletValue: number;
+  $: data = $userData;
+  $: walletValue = $walletData.maxValue;
+
+  const formatter = new Intl.NumberFormat("en", { notation: "compact" });
+
   import { onMount } from "svelte";
   let dark = false;
   onMount(() => {
@@ -35,10 +44,11 @@
     </Button>
   </header>
   <User
-    url="/icons/chad.jpg"
-    name="Niedlich Katze"
-    status="Руководитель"
-    num="5k V₽"
+    vr
+    url={data.url}
+    name="{data.name} {data.surname}"
+    status={data.role}
+    num={formatter.format(walletValue)}
     href="/me"
     selected={selected == -1}
     on:click={() => {

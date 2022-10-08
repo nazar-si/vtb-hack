@@ -17,6 +17,8 @@
     darePrice: number;
     dareTill: Date;
     truthTill: Date;
+    truthMatics?: boolean;
+    dareMatics?: boolean;
     answersCount: number;
     answer: boolean;
   }
@@ -42,8 +44,8 @@
         <div class="question">
           {data.truth}
         </div>
-        <Badge class="price">
-          {data.truthPrice} V₽
+        <Badge vr={!data.truthMatics} mc={data.truthMatics}>
+          {data.truthPrice}
         </Badge>
       </div>
       <div class="bottom">
@@ -94,8 +96,8 @@
         <div class="question">
           {data.dare}
         </div>
-        <Badge>
-          {data.darePrice} V₽
+        <Badge vr={!data.dareMatics} mc={data.dareMatics}>
+          {data.darePrice}
         </Badge>
       </div>
       <div class="bottom">

@@ -1,5 +1,6 @@
 <script lang="ts">
   import Badge from "./Badge.svelte";
+  import { Bell } from "tabler-icons-svelte";
 
   export let name = "Название";
   export let status = "Статус";
@@ -8,6 +9,9 @@
   export let selected = false;
   export let m = 0;
   export let href = "";
+  export let bell = false;
+  export let vr = false;
+  export let mc = false;
 </script>
 
 <a {href} class="wrapper" style:margin="{m / 4}rem 0" class:selected on:click>
@@ -30,7 +34,11 @@
       </div>
     </div>
   </div>
-  <Badge>{num}</Badge>
+  <Badge {vr} {mc}
+    >{num}
+    {#if bell}
+      <Bell size={16} />{/if}</Badge
+  >
 </a>
 
 <style lang="postcss">
@@ -88,7 +96,7 @@
           @apply text-blue-500;
         }
         .status.yellow {
-          @apply text-amber-500;
+          @apply text-amber-600 gdark:text-amber-500;
         }
         .status.red {
           @apply text-rose-500 gdark:text-rose-400;

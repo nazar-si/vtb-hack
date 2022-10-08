@@ -10,16 +10,18 @@
   export let mt = 0;
   export let error = false;
   export let flex = false;
+  export let disabled = false;
   import cuid from "cuid";
   let c = cuid();
 </script>
 
 <div
-  class={"frame"}
+  class="frame"
   style:margin="{(my ? my : m) / 4}rem {(mx ? mx : m) / 4}rem"
   style:margin-bottom="{mb}rem"
   style:margin-top="{mt}rem"
   class:error
+  class:disabled
 >
   <label for="input-{c}" class="label">
     <div class="title">{label}</div>
@@ -39,6 +41,7 @@
       on:blur
       on:focus
       bind:value
+      {disabled}
     />
   </label>
 </div>
@@ -60,8 +63,9 @@
     box-shadow: 0 0 0 #0000;
     border-radius: 6px;
     padding: 0 16px;
+    width: 100%;
     @apply flex gap-3 border-1;
-    @apply bg-white border-gray-300;
+    @apply bg-gray-50 border-gray-300;
     @apply gdark:bg-gray-850 gdark:border-gray-700;
     @apply text-gray-800 gdark:text-gray-100;
     .icon {
@@ -74,6 +78,9 @@
         @apply text-blue-500;
       }
     }
+    input {
+      min-width: 0;
+    }
   }
   .label {
     .title {
@@ -85,6 +92,13 @@
   }
   .frame {
     width: 100%;
+    &.disabled {
+      .input {
+        @apply bg-white border-gray-300;
+        @apply gdark:bg-gray-750 gdark:border-gray-700;
+        @apply text-gray-800 gdark:text-gray-100;
+      }
+    }
   }
   .frame.error {
     .label {

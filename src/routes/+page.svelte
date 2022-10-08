@@ -106,6 +106,7 @@
         dare: "Поменять воду в куллере",
         truthPrice: 23,
         darePrice: 23,
+        dareMatics: true,
         truthTill: new Date("2022-10-9 8:00"),
         dareTill: new Date("2022-10-9 8:00"),
         answersCount: 12,

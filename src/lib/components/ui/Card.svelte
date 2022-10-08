@@ -5,22 +5,23 @@
   export let description = "";
   export let full = ""; // текст на кнопке для открытия
   export let fullHref = ""; // ссылка для перехода по кнопке
+  export let height = "";
 </script>
 
-<div class="wrapper">
-  <header>
-    <div class="title">
-      <div class="name">{title}</div>
-      <div class="description">{description}</div>
-    </div>
-    {#if full}
-      <div class="full">
-        <a tabindex="-1" href={fullHref}
-          ><Button white on:click>{full}</Button></a
-        >
+<div class="wrapper" style:height>
+  {#if title || description || full}<header>
+      <div class="title">
+        {#if title}<div class="name">{title}</div>{/if}
+        {#if description}<div class="description">{description}</div>{/if}
       </div>
-    {/if}
-  </header>
+      {#if full}
+        <div class="full">
+          <a tabindex="-1" href={fullHref}
+            ><Button white on:click>{full}</Button></a
+          >
+        </div>
+      {/if}
+    </header>{/if}
   <main>
     <slot />
   </main>
@@ -51,6 +52,10 @@
           @apply text-gray-500;
         }
       }
+    }
+    main {
+      width: 100%;
+      height: 100%;
     }
   }
 </style>

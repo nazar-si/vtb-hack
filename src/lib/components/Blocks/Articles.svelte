@@ -23,7 +23,12 @@
     <Frame>
       <div class="more">Загрзить больше</div>
     </Frame>
-    <Ask title="Напиши свою статью" points={5} placeholder="Название статьи" />
+    <Ask
+      title="Напиши свою статью"
+      points={0.05}
+      matics
+      placeholder="Название статьи"
+    />
   </div>
 </Card>
 

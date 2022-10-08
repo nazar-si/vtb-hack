@@ -11,6 +11,7 @@
     price: number; // coins to get from completion
     url: string;
     started: boolean;
+    matics?: boolean;
   }
 
   export let data: course[];
@@ -30,16 +31,20 @@
             <div class="row">
               <div class="title">{course.title}</div>
               <div class="badge">
-                <Badge>{course.price} V₽</Badge>
+                <Badge vr={!course.matics} mc={course.matics}
+                  >{course.price}</Badge
+                >
               </div>
             </div>
-            <div class="left">
-              Осталось {course.left}
-              {declOfNum(course.left, ["день", "дня", "дней"])}
+            <div class="bottom">
+              <div class="left">
+                Осталось {course.left}
+                {declOfNum(course.left, ["урок", "урока", "уроков"])}
+              </div>
+              <Button white={!course.started}
+                >{#if course.started}Продолжить{:else}Начать{/if}</Button
+              >
             </div>
-            <Button white={!course.started}
-              >{#if course.started}Продолжить{:else}Начать{/if}</Button
-            >
           </div>
         </div>
       </Frame>
@@ -78,6 +83,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: 0.5rem;
         .title {
           align-items: flex-start;
@@ -89,6 +95,13 @@
         }
         .left {
           @apply text-gray-500;
+        }
+        .bottom {
+          width: 100%;
+          display: flex;
+          align-items: stretch;
+          gap: 0.5rem;
+          flex-direction: column;
         }
       }
     }
