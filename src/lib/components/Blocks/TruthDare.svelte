@@ -34,6 +34,7 @@
   title="Парвда или действие"
   description="Получите коины за ответ на вопрос или выполнение задачи."
   full="Смотреть все"
+  fullHref="/play"
 >
   <div class="wrapper">
     <div class="entry">

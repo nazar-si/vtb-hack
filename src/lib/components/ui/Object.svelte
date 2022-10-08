@@ -5,21 +5,33 @@
   export let status = "Статус";
   export let url = "/favicon.png";
   export let num = "";
+  export let selected = false;
   export let m = 0;
+  export let href = "";
 </script>
 
-<button class="wrapper" style:margin="{m / 4}rem 0">
+<a {href} class="wrapper" style:margin="{m / 4}rem 0" class:selected on:click>
   <div class="main">
     <div class="icon">
       <img src={url} alt="Иконка пользователя" />
     </div>
     <div class="title">
       <div class="name">{name}</div>
-      <div class="status">{status}</div>
+      <div
+        class="status {status == 'Редактор'
+          ? 'blue'
+          : status == 'Руководитель'
+          ? 'yellow'
+          : status == 'Администратор'
+          ? 'red'
+          : ''}"
+      >
+        {status}
+      </div>
     </div>
   </div>
   <Badge>{num}</Badge>
-</button>
+</a>
 
 <style lang="postcss">
   .wrapper {
@@ -32,6 +44,10 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    &.selected {
+      @apply border-blue-500;
+      @apply bg-blue-500/10;
+    }
     .main {
       flex: 1;
       display: flex;
@@ -67,6 +83,15 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           @apply text-sm text-gray-500 gdark:text-gray-400;
+        }
+        .status.blue {
+          @apply text-blue-500;
+        }
+        .status.yellow {
+          @apply text-amber-500;
+        }
+        .status.red {
+          @apply text-rose-500 gdark:text-rose-400;
         }
       }
     }

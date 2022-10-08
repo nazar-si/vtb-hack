@@ -24,7 +24,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    @apply text-gray-400 text-4xl font-bold gdark:text-gray-600;
+    @apply text-gray-400 text-4xl font-bold gdark:text-gray-500;
     a {
       @apply hover:text-gray-500 transition-all;
     }

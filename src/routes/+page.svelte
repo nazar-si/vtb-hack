@@ -7,6 +7,7 @@
   import Forums from "$lib/components/Blocks/Forums.svelte";
   import Courses from "$lib/components/Blocks/Courses.svelte";
   import Mentoring from "$lib/components/Blocks/Mentoring.svelte";
+  import Mentor from "$lib/components/Blocks/Mentor.svelte";
 </script>
 
 <BreadCrumb items={[{ title: "Активности", href: "/" }]} />
@@ -61,25 +62,36 @@
         },
       ]}
     />
+    <Mentor
+      data={{
+        isMenti: false,
+        mentor: {
+          name: "Илон Маск",
+          status: "Администратор",
+          coins: "3М",
+          url: "/icons/musk.jpg",
+        },
+      }}
+    />
     <Mentoring
       data={{
         isMentor: false,
         menti: [
           {
             name: "Симчук Назар",
-            status: "неДизайнер",
+            status: "Сотрудник",
             coins: "2k",
             url: "/icons/nazar.jpg",
           },
           {
             name: "Познающий мир",
-            status: "Филиал ада",
+            status: "Редактор",
             coins: "1.6k",
             url: "/icons/katze.jpg",
           },
           {
             name: "Какой-то чел",
-            status: "неДизайнер",
+            status: "Сотрудник",
             coins: "1.3k",
             url: "/icons/linus.jpg",
           },

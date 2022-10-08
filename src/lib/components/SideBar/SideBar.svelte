@@ -8,6 +8,8 @@
     dark = document.body.classList.contains("dark");
   });
   import Button from "$lib/components/ui/Button.svelte";
+
+  let selected = 0;
 </script>
 
 <div class="wrapper">
@@ -35,10 +37,15 @@
   <User
     url="/icons/chad.jpg"
     name="Niedlich Katze"
-    status="Филиал ада"
-    num="1.2k V₽"
+    status="Руководитель"
+    num="5k V₽"
+    href="/me"
+    selected={selected == -1}
+    on:click={() => {
+      selected = -1;
+    }}
   />
-  <Nav />
+  <Nav bind:selected />
 </div>
 
 <style lang="postcss">

@@ -6,19 +6,22 @@
     ShoppingCart,
     Wallet,
     ChartBar,
+    LayoutGrid,
   } from "tabler-icons-svelte";
   let entries = [
-    { name: "Активности", icon: Star },
-    { name: "Новости", icon: News },
-    { name: "Магазин", icon: ShoppingCart },
-    { name: "Кошелёк", icon: Wallet },
-    { name: "Рейтинг", icon: ChartBar },
+    { url: "/", name: "Активности", icon: Star },
+    { url: "/news", name: "Новости", icon: News },
+    { url: "/shop", name: "Магазин", icon: ShoppingCart },
+    { url: "/wallet", name: "Кошелёк", icon: Wallet },
+    { url: "/rate", name: "Рейтинг", icon: ChartBar },
+    { url: "/gallery", name: "Третьяковка", icon: LayoutGrid },
   ];
 </script>
 
 <div class="wrapper">
   {#each entries as entry, id}
-    <button
+    <a
+      href={entry.url}
       class="entry"
       class:selected={id == selected}
       on:click={() => {
@@ -27,7 +30,7 @@
     >
       <div class="icon"><svelte:component this={entry.icon} /></div>
       <div class="title">{entry.name}</div>
-    </button>
+    </a>
   {/each}
 </div>
 
