@@ -1,19 +1,44 @@
 <script lang="ts">
-  import User from "./Elements/User.svelte";
-  import Nav from "./Elements/Nav.svelte";
+  import { Sun, Moon } from "tabler-icons-svelte";
+  import User from "../Object.svelte";
+  import Nav from "./Nav.svelte";
+  import { onMount } from "svelte";
+  let dark = false;
+  onMount(() => {
+    dark = document.body.classList.contains("dark");
+  });
+  import Button from "$lib/components/Button.svelte";
 </script>
 
 <div class="wrapper">
-  <div class="logo">
-    <img src="/logo VTB.svg" alt="" width="85" height="30" />
-  </div>
-  <User />
+  <header>
+    <div class="logo">
+      <img src="/logo VTB.svg" alt="" width="85" height="30" />
+    </div>
+    <Button
+      on:click={() => {
+        dark = !dark;
+        if (!dark) document.body.classList.remove("dark");
+        else document.body.classList.add("dark");
+      }}
+      white
+      px={2}
+      py={2}
+    >
+      {#if dark}
+        <Moon />
+      {:else}
+        <Sun />
+      {/if}
+    </Button>
+  </header>
+  <User url="/icons/katze.jpg" name="Niedlich Katze" status="Филиал ада" />
   <Nav />
 </div>
 
 <style lang="postcss">
   .wrapper {
-    width: 270px;
+    width: 320px;
     padding: 20px;
     @apply bg-gray-200 border-r-1 border-gray-300 gdark:bg-gray-750 gdark:border-gray-700;
     height: 100%;
@@ -21,9 +46,14 @@
     flex-direction: column;
     align-items: stretch;
     gap: 20px;
-    .logo {
-      @apply invert gdark:invert-0;
-      margin-bottom: 10px;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .logo {
+        @apply invert gdark:invert-0;
+        margin-bottom: 10px;
+      }
     }
   }
 </style>

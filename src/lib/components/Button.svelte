@@ -1,6 +1,8 @@
 <script lang="ts">
   export let secondary = false;
   export let white = false;
+  export let py = 2;
+  export let px = 4;
 </script>
 
 <button
@@ -8,6 +10,7 @@
   class:primary={!secondary && !white}
   class:secondary={secondary && !white}
   class:white={white && !secondary}
+  style:padding="{py / 4}rem {px / 4}rem"
 >
   <slot />
 </button>
@@ -17,7 +20,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 16px;
     border-radius: 6px;
     box-shadow: 0 0 0 0 #0000;
     @apply transition-all font-medium;
