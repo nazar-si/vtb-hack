@@ -213,7 +213,7 @@
 {#if pageId != "me"}
   <History data={customHistory} />
 {:else}
-  <History />
+  <History me />
 {/if}
 
 <style lang="postcss">

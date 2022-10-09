@@ -20,7 +20,6 @@
     get("/market/", token)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         data = json.map((a) => ({
           id: a.id,
           name: a.name,

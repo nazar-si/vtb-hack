@@ -6,7 +6,7 @@
   import { get } from "svelte/store";
   import { walletActionType as actionType } from "$lib/stores/user";
   import { walletData } from "$lib/stores/user";
-
+  export let me = false;
   export let data: any[] = undefined;
   let history = $walletData.history;
   const walletFormatter = new Intl.NumberFormat("en", { notation: "compact" });
@@ -18,64 +18,65 @@
     hour: "2-digit",
     minute: "2-digit",
   });
-  $: console.log(data, history);
   let current = 3;
 </script>
 
 <Card title="История">
   <div class="list">
-    {#each data !== undefined ? data
-          .sort((a, b) => (a.date > b.date ? -1 : 1))
-          .slice(0, current) : history
-          .sort((a, b) => (a.date > b.date ? -1 : 1))
-          .slice(0, current) as d}
-      <Frame>
-        <div class="entry">
-          <div class="left">
-            <div class="title">
-              <div class="action {d.action}">
-                {d.action == actionType.GET
-                  ? "Поступление"
-                  : d.action == actionType.PUT
-                  ? "Подарок"
-                  : d.action == actionType.OUT
-                  ? "Вывод"
-                  : d.action == actionType.BUY
-                  ? "Покупка"
-                  : "Активность"}
+    {#if me || data}
+      {#each !me ? data
+            .sort((a, b) => (a.date > b.date ? -1 : 1))
+            .slice(0, current) : history
+            .sort((a, b) => (a.date > b.date ? -1 : 1))
+            .slice(0, current) as d}
+        <Frame>
+          <div class="entry">
+            <div class="left">
+              <div class="title">
+                <div class="action {d.action}">
+                  {d.action == actionType.GET
+                    ? "Поступление"
+                    : d.action == actionType.PUT
+                    ? "Подарок"
+                    : d.action == actionType.OUT
+                    ? "Вывод"
+                    : d.action == actionType.BUY
+                    ? "Покупка"
+                    : "Активность"}
+                </div>
+                <div class="text">{d.text}</div>
               </div>
-              <div class="text">{d.text}</div>
+              <div class="date">{formatter.format(d.date)}</div>
             </div>
-            <div class="date">{formatter.format(d.date)}</div>
+            <div class="right">
+              {#if d.amount}
+                <Badge red={!positiv.includes(d.action)} vr
+                  >{positiv.includes(d.action)
+                    ? " + "
+                    : " - "}{walletFormatter.format(d.amount)}</Badge
+                >
+              {/if}
+              {#if d.maticsAmount}
+                <Badge red={!positiv.includes(d.action)} mc
+                  >{positiv.includes(d.action)
+                    ? " + "
+                    : " - "}{walletFormatter.format(d.maticsAmount)}</Badge
+                >
+              {/if}
+            </div>
           </div>
-          <div class="right">
-            {#if d.amount}
-              <Badge red={!positiv.includes(d.action)} vr
-                >{positiv.includes(d.action)
-                  ? " + "
-                  : " - "}{walletFormatter.format(d.amount)}</Badge
-              >
-            {/if}
-            {#if d.maticsAmount}
-              <Badge red={!positiv.includes(d.action)} mc
-                >{positiv.includes(d.action)
-                  ? " + "
-                  : " - "}{walletFormatter.format(d.maticsAmount)}</Badge
-              >
-            {/if}
-          </div>
-        </div>
-      </Frame>
-    {/each}
-    {#if current < (data ? data.length : history.length)}
-      <Frame>
-        <button
-          class="more"
-          on:click={() => {
-            current += 2;
-          }}>Загрузить больше <RotateClockwise2 /></button
-        >
-      </Frame>
+        </Frame>
+      {/each}
+      {#if current < (data ? data.length : history.length)}
+        <Frame>
+          <button
+            class="more"
+            on:click={() => {
+              current += 2;
+            }}>Загрузить больше <RotateClockwise2 /></button
+          >
+        </Frame>
+      {/if}
     {/if}
   </div>
 </Card>
