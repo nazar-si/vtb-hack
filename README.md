@@ -8,3 +8,13 @@ git clone https://github.com/nazar-si/vtb-hack
 cd vtb-hack
 npm i
 ```
+
+Запуск сервера для разработки:
+```
+npm run dev
+```
+
+Запуск сервера в рабочем режиме:
+```
+npm run preview
+```
