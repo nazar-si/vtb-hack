@@ -42,7 +42,7 @@
       box-shadow: 0 0 0 3px #08f5;
     }
     &:disabled {
-      @apply !bg-transparent border-gray-300 gdark:border-gray-600 text-gray-500;
+      @apply !bg-transparent border-gray-300 gdark:border-gray-600 !text-gray-500/50;
     }
   }
 </style>

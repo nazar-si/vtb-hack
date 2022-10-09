@@ -1,6 +1,3 @@
-<script lang="ts" context="module">
-</script>
-
 <script lang="ts">
   import History from "$lib/components/common/History.svelte";
   import Card from "$lib/components/ui/Card.svelte";
@@ -20,6 +17,9 @@
   import { Pencil } from "tabler-icons-svelte";
   import { onMount } from "svelte";
   import { get } from "$lib/help/fetch";
+
+  export let test = "";
+
   const formatter = new Intl.NumberFormat("en", { notation: "compact" });
 
   let maticsValue: number = 0;
