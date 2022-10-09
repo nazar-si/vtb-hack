@@ -46,8 +46,6 @@
   if (pageId == "me") maxValue = $walletData.maxValue;
   if (pageId == "me") maticsValue = $walletData.maticsValue;
 
-  let nextLevel = 6000;
-  let previousLevel = 4500;
   onMount(() => {
     if (pageId != "me") {
       let token = window.localStorage.getItem("token");
@@ -84,6 +82,28 @@
         });
     }
   });
+
+  let levels = [
+    "Начинающий",
+    "Успешный",
+    "Продуктивный",
+    "Харош",
+    "Мега-Харош",
+    "Ультра-Мега-Харош",
+    "Гений мысли",
+    "Ультрамен",
+    "Босс",
+    "Full Master",
+  ];
+  maxValue = 1000000;
+  let level, nextLevel, previousLevel;
+  let power = 5;
+  $: level = Math.min(
+    levels.length - 2,
+    Math.max(0, Math.floor(Math.log(Math.floor(maxValue)) / Math.log(power)))
+  );
+  $: nextLevel = power ** (level + 1);
+  $: previousLevel = power ** level;
   let levelProgress = 0;
   $: levelProgress = Math.min(
     1,
@@ -171,11 +191,11 @@
         <div class="levels">
           <div class="row">
             <div class="start">
-              <div class="title">Гений мысли</div>
+              <div class="title">{levels[Math.floor(level)]}</div>
               <Badge vr>{formatter.format(maxValue)}</Badge>
             </div>
             <div class="end">
-              <div class="title">Ультрамен</div>
+              <div class="title">{levels[Math.floor(level) + 1]}</div>
               <Badge vr>{formatter.format(nextLevel)}</Badge>
             </div>
           </div>
@@ -190,7 +210,11 @@
     </Card>
   </div>
 </div>
-<History data={customHistory} />
+{#if pageId == "me"}
+  <History data={customHistory} />
+{:else}
+  <History />
+{/if}
 
 <style lang="postcss">
   .main {

@@ -7,9 +7,9 @@
   import { walletActionType as actionType } from "$lib/stores/user";
   import { walletData } from "$lib/stores/user";
 
-  export let data = [];
+  export let data: any[] | undefined = undefined;
+  let history = $walletData.history;
   const walletFormatter = new Intl.NumberFormat("en", { notation: "compact" });
-  $: data ? 0 : (data = $walletData.history);
   let positiv = [actionType.GET, actionType.DONE];
   let formatter = new Intl.DateTimeFormat("ru", {
     month: "long",
@@ -23,9 +23,11 @@
 
 <Card title="История">
   <div class="list">
-    {#each data
-      .sort((a, b) => (a.date > b.date ? -1 : 1))
-      .slice(0, current) as d}
+    {#each data !== undefined ? data
+          .sort((a, b) => (a.date > b.date ? -1 : 1))
+          .slice(0, current) : history
+          .sort((a, b) => (a.date > b.date ? -1 : 1))
+          .slice(0, current) as d}
       <Frame>
         <div class="entry">
           <div class="left">
@@ -64,7 +66,7 @@
         </div>
       </Frame>
     {/each}
-    {#if current < data.length}
+    {#if current < (data ? data.length : history.length)}
       <Frame>
         <button
           class="more"
