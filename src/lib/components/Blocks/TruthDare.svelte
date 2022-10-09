@@ -137,7 +137,6 @@
         </div>
       </div>
       <Button
-        disabled
         on:click={() => {
           dispatch("dare");
         }}>Выполнить</Button

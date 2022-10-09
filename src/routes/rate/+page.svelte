@@ -26,7 +26,6 @@
         }));
       });
   });
-  $: console.log(rating);
 </script>
 
 <BreadCrumb items={[{ title: "Рейтинг", href: "/rate" }]} />
@@ -36,6 +35,7 @@
       <div class="entry">
         <div class="place">{id + 1}</div>
         <Object
+          href="/user/{person.id}"
           name={person.name}
           vr
           num={person.value}

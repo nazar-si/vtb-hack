@@ -7,9 +7,9 @@
   import { walletActionType as actionType } from "$lib/stores/user";
   import { walletData } from "$lib/stores/user";
 
+  export let data = [];
   const walletFormatter = new Intl.NumberFormat("en", { notation: "compact" });
-  let data;
-  $: data = $walletData.history;
+  $: data ? 0 : (data = $walletData.history);
   let positiv = [actionType.GET, actionType.DONE];
   let formatter = new Intl.DateTimeFormat("ru", {
     month: "long",
@@ -32,9 +32,9 @@
             <div class="title">
               <div class="action {d.action}">
                 {d.action == actionType.GET
-                  ? "Вам подарили"
+                  ? "Поступление"
                   : d.action == actionType.PUT
-                  ? "Вы подарили"
+                  ? "Подарок"
                   : d.action == actionType.OUT
                   ? "Вывод"
                   : d.action == actionType.BUY

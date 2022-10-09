@@ -1,6 +1,12 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
   import SideBar from "./SideBar/SideBar.svelte";
-  import { userData, roleType, walletData } from "$lib/stores/user";
+  import {
+    userData,
+    roleType,
+    walletData,
+    walletActionType as wat,
+  } from "$lib/stores/user";
   import type { userDataType, walletDataType } from "$lib/stores/user";
   import Card from "./ui/Card.svelte";
   import Input from "./ui/Input.svelte";
@@ -17,7 +23,6 @@
       get("/users/me/", token)
         .then((res) => res.json())
         .then((json) => {
-          console.log(json);
           let newUserData: userDataType = {
             url: json.avatar,
             email: json.email,
@@ -36,7 +41,15 @@
             value: json.rouble_balance,
             maxValue: json.max_roubles,
             maticsValue: json.matic_balance * 1000,
-            history: $walletData.history,
+            history: json.transactions.map((a) => ({
+              value: a.currency_type == 0 ? a.amount : undefined,
+              maticsValue: a.currency_type == 1 ? a.amount : undefined,
+              date: new Date(a.date),
+              text: a.text,
+              action: [wat.GET, wat.PUT, wat.OUT, wat.BUY, wat.DONE][
+                a.transaction_type
+              ],
+            })),
           };
           userData.update((val) => newUserData);
           walletData.update((val) => newWalletData);
@@ -61,6 +74,7 @@
       .then((json) => {
         localStorage.setItem("token", json.token);
       });
+    goto("/");
   };
 </script>
 

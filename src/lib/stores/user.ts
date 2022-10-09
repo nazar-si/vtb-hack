@@ -31,7 +31,7 @@ export interface userDataType {
 //     patronymic: ""
 // }
 let userInitial : userDataType = {
-    url: "/favicon.ico",
+    url: "/favicon.png",
     name: "",
     role: roleType.default,
     email: "",

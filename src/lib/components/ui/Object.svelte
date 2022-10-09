@@ -17,7 +17,7 @@
 <a {href} class="wrapper" style:margin="{m / 4}rem 0" class:selected on:click>
   <div class="main">
     <div class="icon">
-      <img src={url ? url : "/favicon.ico"} alt="Иконка пользователя" />
+      <img src={url ? url : "/favicon.png"} alt="Иконка пользователя" />
     </div>
     <div class="title">
       <div class="name">{name}</div>
