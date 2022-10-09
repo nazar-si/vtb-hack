@@ -13,20 +13,32 @@ export interface userDataType {
     role: roleType,
     email: string,
     bio: string,
-    birthday: Date,
+    birthday?: Date,
     surname?: string,
-    patronymic?: string
+    patronymic?: string,
+    token?: string,
+    id: number
 }
 
+// let userInitial : userDataType = {
+//     url: "/icons/chad.jpg",
+//     name: "Niedlich",
+//     role: roleType.manager,
+//     email: "niedlich@gmail.com",
+//     bio: "Просто обычный человек с большими амбициями",
+//     birthday: new Date("1982-03-17"),
+//     surname: "Katze",
+//     patronymic: ""
+// }
 let userInitial : userDataType = {
-    url: "/icons/chad.jpg",
-    name: "Niedlich",
-    role: roleType.manager,
-    email: "niedlich@gmail.com",
-    bio: "Просто обычный человек с большими амбициями",
+    url: "/favicon.ico",
+    name: "",
+    role: roleType.default,
+    email: "",
+    bio: "",
     birthday: new Date("1982-03-17"),
-    surname: "Katze",
-    patronymic: ""
+    surname: "",
+    id: -1,
 }
 
 export enum walletActionType {
@@ -98,6 +110,13 @@ const history: historyEntryType[] = [
     text: "Покупка NFT",
 },
 ];
+
+export interface walletDataType{
+    value: number,
+    maxValue: number,
+    history: historyEntryType[],
+    maticsValue: number
+}
 
 let walletInitial = {
     value: 100,

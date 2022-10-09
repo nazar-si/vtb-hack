@@ -19,7 +19,7 @@
 
 <div class="main">
   <div class="entry">
-    <Card
+    <Card height="100%"
       ><div class="content">
         <WalletValue />
       </div>
@@ -30,21 +30,21 @@
     >
   </div>
   <div class="entry">
-    <Card
+    <Card height="100%"
       ><div class="content matic">
-        {maticsValue}
+        {maticsValue.toFixed(1)}
       </div>
       <div class="subtitle">Милли-MATIC</div></Card
     >
   </div>
   <div class="entry">
-    <Card
+    <Card height="100%"
       ><div class="content"><div class="icon"><Gift size={48} /></div></div>
       <div class="subtitle">Подарить</div></Card
     >
   </div>
   <div class="entry">
-    <Card
+    <Card height="100%"
       ><div class="content">
         <div class="icon"><Exchange size={48} /></div>
       </div>
@@ -67,16 +67,23 @@
       flex: 1;
       @apply border-1 border-transparent hover:border-blue-500 transition-all;
       border-radius: 10px;
+      position: relative;
 
       .content {
         height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
       }
       .matic {
-        @apply text-5xl font-bold;
+        @apply text-4xl font-bold;
         @apply text-gray-700 gdark:text-gray-100;
       }
       .subtitle {
-        margin-bottom: -0.5rem;
+        position: absolute;
+        bottom: 0.5rem;
+        /* margin-bottom: -0.5rem; */
         @apply text-gray-500;
       }
       .icon {

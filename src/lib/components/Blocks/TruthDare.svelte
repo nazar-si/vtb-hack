@@ -10,6 +10,9 @@
     Check,
   } from "tabler-icons-svelte";
   import Badge from "../ui/Badge.svelte";
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+
   interface data {
     truth: string;
     dare: string;
@@ -23,6 +26,7 @@
     answer: boolean;
   }
   export let data: data;
+  export let hideTitle = false;
 
   const formatter = new Intl.RelativeTimeFormat("ru", {
     style: "short",
@@ -33,10 +37,12 @@
 </script>
 
 <Card
-  title="Парвда или действие"
-  description="Получите коины за ответ на вопрос или выполнение задачи."
-  full="Смотреть все"
-  fullHref="/play"
+  title={hideTitle ? "" : "Парвда или действие"}
+  description={hideTitle
+    ? ""
+    : "Получите коины за ответ на вопрос или выполнение задачи."}
+  full={hideTitle ? "" : "Смотреть все"}
+  fullHref="/main/play"
 >
   <div class="wrapper">
     <div class="entry">
@@ -88,7 +94,12 @@
       </div>
       <div class="row">
         <Input placeholder="Ваш ответ" my={0} />
-        <Button px={2.5}><Send /></Button>
+        <Button
+          px={2.5}
+          on:click={() => {
+            dispatch("truth");
+          }}><Send /></Button
+        >
       </div>
     </div>
     <div class="entry">
@@ -115,14 +126,22 @@
             {/if}
           </div>
         </div>
-        <div class="badge dare">
-          <div class="icon">
-            <Rocket size={16} />
+        <div class="row">
+          <div class="badge dare">
+            <div class="icon">
+              <Rocket size={16} />
+            </div>
+            <div>Действие</div>
           </div>
-          <div>Действие</div>
+          <div class="badge">Проверяется</div>
         </div>
       </div>
-      <Button>Выполнить</Button>
+      <Button
+        disabled
+        on:click={() => {
+          dispatch("dare");
+        }}>Выполнить</Button
+      >
     </div>
   </div>
 </Card>
@@ -130,10 +149,11 @@
 <style lang="postcss">
   .wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 1rem;
     .entry {
-      min-width: 300px;
+      min-width: 420px;
       border-radius: 8px;
       padding: 1rem;
       flex: 1;

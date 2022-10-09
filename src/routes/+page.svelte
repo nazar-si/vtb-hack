@@ -64,7 +64,7 @@
     />
     <Mentor
       data={{
-        isMenti: false,
+        isMenti: true,
         mentor: {
           name: "Илон Маск",
           status: "Администратор",
@@ -75,7 +75,7 @@
     />
     <Mentoring
       data={{
-        isMentor: false,
+        isMentor: true,
         menti: [
           {
             name: "Симчук Назар",

@@ -14,11 +14,14 @@
 <style lang="postcss">
   .number {
     display: flex;
-    @apply text-5xl font-bold;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    @apply text-3xl font-bold;
     @apply text-gray-500 gdark:text-gray-600;
+    @apply -translate-y-2;
     span {
       display: block;
-      @apply text-4xl translate-y-6;
+      @apply text-2xl translate-y-6;
       @apply text-gray-700 gdark:text-gray-100;
     }
   }

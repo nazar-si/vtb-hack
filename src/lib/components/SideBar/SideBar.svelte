@@ -6,6 +6,7 @@
   import type { userDataType } from "$lib/stores/user";
   let data: userDataType;
   let walletValue: number;
+  let token = "";
   $: data = $userData;
   $: walletValue = $walletData.maxValue;
 
@@ -15,6 +16,7 @@
   let dark = false;
   onMount(() => {
     dark = document.body.classList.contains("dark");
+    token = window.localStorage.getItem("token");
   });
   import Button from "$lib/components/ui/Button.svelte";
 
@@ -43,19 +45,23 @@
       {/if}
     </Button>
   </header>
-  <User
-    vr
-    url={data.url}
-    name="{data.name} {data.surname}"
-    status={data.role}
-    num={formatter.format(walletValue)}
-    href="/me"
-    selected={selected == -1}
-    on:click={() => {
-      selected = -1;
-    }}
-  />
-  <Nav bind:selected />
+  {#if token}
+    <User
+      vr
+      url={data.url}
+      name="{data.name} {data.surname}"
+      status={data.role}
+      num={formatter.format(walletValue)}
+      href="/me"
+      selected={selected == -1}
+      on:click={() => {
+        selected = -1;
+      }}
+    />
+    <Nav bind:selected />
+  {:else}
+    <User name="Нет авторизации" status="" />
+  {/if}
 </div>
 
 <style lang="postcss">

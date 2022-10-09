@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { roleType, userData } from "$lib/stores/user";
   export let selected = 0;
   import {
     Star,
@@ -7,15 +8,31 @@
     Wallet,
     ChartBar,
     LayoutGrid,
+    Hierarchy,
   } from "tabler-icons-svelte";
-  let entries = [
+
+  interface e {
+    url: string;
+    name: any;
+    icon: any;
+    access?: string[];
+  }
+  let entries: e[] = [
     { url: "/", name: "Активности", icon: Star },
     { url: "/news", name: "Новости", icon: News },
     { url: "/shop", name: "Магазин", icon: ShoppingCart },
     { url: "/wallet", name: "Кошелёк", icon: Wallet },
     { url: "/rate", name: "Рейтинг", icon: ChartBar },
     { url: "/gallery", name: "Третьяковка", icon: LayoutGrid },
-  ];
+    {
+      url: "/admin",
+      name: "Администрирование",
+      icon: Hierarchy,
+      access: [roleType.admin],
+    },
+  ].filter(
+    (a: e) => a.access === undefined || a.access?.includes($userData.role)
+  );
 </script>
 
 <div class="wrapper">

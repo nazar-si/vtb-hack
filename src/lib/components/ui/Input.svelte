@@ -22,6 +22,7 @@
   style:margin-top="{mt}rem"
   class:error
   class:disabled
+  on:keydown
 >
   <label for="input-{c}" class="label">
     <div class="title">{label}</div>

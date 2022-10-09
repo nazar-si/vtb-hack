@@ -17,7 +17,7 @@
 <a {href} class="wrapper" style:margin="{m / 4}rem 0" class:selected on:click>
   <div class="main">
     <div class="icon">
-      <img src={url} alt="Иконка пользователя" />
+      <img src={url ? url : "/favicon.ico"} alt="Иконка пользователя" />
     </div>
     <div class="title">
       <div class="name">{name}</div>
@@ -34,11 +34,11 @@
       </div>
     </div>
   </div>
-  <Badge {vr} {mc}
-    >{num}
-    {#if bell}
-      <Bell size={16} />{/if}</Badge
-  >
+  {#if num !== undefined}<Badge {vr} {mc}
+      >{num}
+      {#if bell}
+        <Bell size={16} />{/if}</Badge
+    >{/if}
 </a>
 
 <style lang="postcss">

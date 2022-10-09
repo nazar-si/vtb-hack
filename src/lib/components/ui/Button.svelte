@@ -3,6 +3,7 @@
   export let white = false;
   export let py = 2;
   export let px = 4;
+  export let disabled = false;
 </script>
 
 <button
@@ -11,6 +12,7 @@
   class:secondary={secondary && !white}
   class:white={white && !secondary}
   style:padding="{py / 4}rem {px / 4}rem"
+  {disabled}
 >
   <slot />
 </button>
@@ -24,6 +26,7 @@
     box-shadow: 0 0 0 0 #0000;
     @apply transition-all font-medium;
     &.primary {
+      @apply border-1 border-transparent;
       @apply bg-blue-600 text-white hover:bg-blue-700;
       @apply gdark:bg-blue-500 gdark:hover:bg-blue-600;
     }
@@ -37,6 +40,9 @@
     }
     &:focus {
       box-shadow: 0 0 0 3px #08f5;
+    }
+    &:disabled {
+      @apply !bg-transparent border-gray-300 gdark:border-gray-600 text-gray-500;
     }
   }
 </style>
