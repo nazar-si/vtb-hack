@@ -50,7 +50,7 @@
 
   const Magic = () => {
     let token;
-    ask("POST", "/auth/singin/", { email, password })
+    ask("POST", "/auth/signin/", { email, password })
       .then((response) => {
         if (response.status != 200) {
           error = true;

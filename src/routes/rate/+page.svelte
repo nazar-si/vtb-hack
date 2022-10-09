@@ -4,7 +4,7 @@
   import BreadCrumb from "$lib/components/BreadCrumb.svelte";
   import Card from "$lib/components/ui/Card.svelte";
   import Object from "$lib/components/ui/Object.svelte";
-  import { userData } from "$lib/stores/user";
+  import { userData, roleType } from "$lib/stores/user";
   let selfId = $userData.id;
   let rating = [];
   onMount(() => {
@@ -17,6 +17,12 @@
           id: a.id,
           value: a.max_roubles,
           name: `${a.name} ${a.surname}`,
+          role: [
+            roleType.admin,
+            roleType.manager,
+            roleType.editor,
+            roleType.default,
+          ][a.role],
         }));
       });
   });
@@ -35,6 +41,7 @@
           num={person.value}
           url={person.url}
           selected={person.id == selfId}
+          status={person.role}
         />
       </div>
     {/each}
