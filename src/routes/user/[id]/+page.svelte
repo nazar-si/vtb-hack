@@ -68,8 +68,8 @@
           };
 
           customHistory = json.transactions.map((a) => ({
-            value: a.currency_type == 0 ? a.amount : undefined,
-            maticsValue: a.currency_type == 1 ? a.amount : undefined,
+            amount: a.currency_type == 0 ? a.amount : undefined,
+            maticsAmount: a.currency_type == 1 ? a.amount : undefined,
             date: new Date(a.date),
             text: a.text,
             action: [wat.GET, wat.PUT, wat.OUT, wat.BUY, wat.DONE][
@@ -210,7 +210,7 @@
     </Card>
   </div>
 </div>
-{#if pageId == "me"}
+{#if pageId != "me"}
   <History data={customHistory} />
 {:else}
   <History />

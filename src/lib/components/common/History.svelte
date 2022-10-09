@@ -7,7 +7,7 @@
   import { walletActionType as actionType } from "$lib/stores/user";
   import { walletData } from "$lib/stores/user";
 
-  export let data: any[] | undefined = undefined;
+  export let data: any[] = undefined;
   let history = $walletData.history;
   const walletFormatter = new Intl.NumberFormat("en", { notation: "compact" });
   let positiv = [actionType.GET, actionType.DONE];
@@ -18,6 +18,7 @@
     hour: "2-digit",
     minute: "2-digit",
   });
+  $: console.log(data, history);
   let current = 3;
 </script>
 

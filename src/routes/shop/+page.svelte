@@ -34,18 +34,35 @@
 
   let mode = [0];
   let modal_open = false;
+  let current = -1;
 </script>
 
 <BreadCrumb items={[{ title: "Магазин", href: "/shop" }]} />
 
-<Modal bind:show={modal_open} on:click={() => (modal_open = false)} />
+<Modal bind:show={modal_open} on:click={() => (modal_open = false)}>
+  Вы подтверждаете, что хотите купить товар за {#if data[current].value}<Badge
+      vr>{formatter.format(data[current].value)}</Badge
+    >{/if}
+  {#if data[current].maticsValue}<Badge mc
+      >{formatter.format(data[current].maticsValue)}</Badge
+    >{/if}
+  <div />
+  <br />
+  <div style:width="100%">
+    <Button
+      on:click={() => {
+        modal_open = false;
+      }}>Купить</Button
+    >
+  </div>
+</Modal>
 
 <!-- <div class="choice">
   <Multiple components={["Магазин", "NFT"]} bind:value={mode} />
 </div> -->
 
 <div class="grid">
-  {#each data as element}
+  {#each data as element, id}
     <div class="entry">
       <div class="image">
         <img src={element.url} alt="" />
@@ -66,7 +83,10 @@
         </div>
         <Button
           white
-          on:click={() => (modal_open = true)}
+          on:click={() => {
+            modal_open = true;
+            current = id;
+          }}
           disabled={$walletData.value < element.value ||
             $walletData.maticsValue < element.maticsValue}>Купить</Button
         >
