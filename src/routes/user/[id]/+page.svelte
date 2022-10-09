@@ -11,7 +11,7 @@
   <BreadCrumb
     items={[
       { title: "Пользователи", href: "/" },
-      { title: pageId, href: "/user/pageId" },
+      { title: pageId, href: `/user/${pageId}` },
     ]}
   />
 {/if}

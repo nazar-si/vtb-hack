@@ -14,7 +14,6 @@ export const get = (url:string, token:string)=>{
       return fetch(host + url, {
         method,
         headers: {
-        "Authorization": `Token ${token}`,
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(data),

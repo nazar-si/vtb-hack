@@ -52,7 +52,7 @@
       name="{data.name} {data.surname}"
       status={data.role}
       num={formatter.format(walletValue)}
-      href="/me"
+      href="/user/me"
       selected={selected == -1}
       on:click={() => {
         selected = -1;
