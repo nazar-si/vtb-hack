@@ -6,17 +6,17 @@
   import Frame from "$lib/components/ui/Frame.svelte";
   import Modal from "$lib/components/ui/Modal.svelte";
   import Multiple from "$lib/components/ui/Multiple.svelte";
-  import { walletData } from "$lib/stores/user";
+  import { walletData, walletActionType } from "$lib/stores/user";
 
   const formatter = new Intl.NumberFormat("en", { notation: "compact" });
 
-  import { get } from "$lib/help/fetch";
+  import { get, post } from "$lib/help/fetch";
 
   import { onMount } from "svelte";
   let data = [];
-
+  let token: string;
   onMount(() => {
-    let token = window.localStorage.getItem("token");
+    token = window.localStorage.getItem("token");
     get("/market/", token)
       .then((res) => res.json())
       .then((json) => {
@@ -30,6 +30,18 @@
         }));
       });
   });
+  let buy = () => {
+    let l = data[current];
+    $walletData.history.push({
+      action: walletActionType.BUY,
+      date: new Date(),
+      text: `Покупка ${l.name}`,
+      amount: l.value,
+      maticsAmount: l.maticsValue,
+    });
+    $walletData.value -= l.value;
+    $walletData.maticsValue -= l.maticsValue;
+  };
 
   let mode = [0];
   let modal_open = false;
@@ -51,6 +63,7 @@
     <Button
       on:click={() => {
         modal_open = false;
+        buy();
       }}>Купить</Button
     >
   </div>

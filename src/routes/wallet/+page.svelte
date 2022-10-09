@@ -52,7 +52,7 @@
     >
   </div>
 </div>
-<History />
+<History me />
 
 <style lang="postcss">
   .main {

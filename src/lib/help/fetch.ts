@@ -1,5 +1,15 @@
 
 let host = "https://rbc.trendercom.net/api/v1";
+export const post = (url:string, token:string, body:string)=>{
+    return fetch(host + url, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Authorization": `Token ${token}`,
+          "Content-Type": "application/json",
+        }
+      })
+    }
 export const get = (url:string, token:string)=>{
     return fetch(host + url, {
         method: "GET",
